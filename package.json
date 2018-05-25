@@ -25,6 +25,7 @@
     "build:dev": "ENV=development yarn transpile:sources && ENV=development yarn bundle",
     "build:staging": "ENV=staging yarn transpile:sources && ENV=staging yarn bundle",
     "build:prod": "ENV=production yarn transpile:sources && ENV=production yarn bundle",
+    "copy2xp": "cp ./build/bundles/OneSignalSDK.js $MARFEELXP_HOME/Tenants/vhosts/marfeel/resources/pushNotifications/OneSignalSDK.js",
     "test": "ENV=development yarn transpile:tests && ava --verbose --color --watch",
     "test:noWatch": "ENV=development yarn transpile:tests && ava --verbose --color --watch=false",
     "publish": "yarn clean && yarn build:prod && yarn "
