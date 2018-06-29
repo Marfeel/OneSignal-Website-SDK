@@ -13,6 +13,23 @@ npm run build:prod
 cp ./build/bundles/OneSignalSDK.js $MARFEELXP_HOME/Tenants/vhosts/marfeel/resources/pushNotifications/OneSignalSDK.js
 ```
 
+## debug
+
+You should be able to run commands in the developer tools Console now.
+
+Execute the following code in console:
+
+```js
+OneSignal.log.setLevel('trace');
+```
+You should see undefined as the result. Reloading the page will provide you all the debug call of OneSignal.
+
+If you see:
+
+Uncaught ReferenceError: OneSignal is not defined(…) or ReferenceError: OneSignal is not defined, then OneSignal is not active on your webpage.
+
+Reference: [Web Push Troubleshooting](https://documentation.onesignal.com/docs/troubleshooting-web-push)
+
 ## checks
 in chrome dev tools (remember that Push notifications do not work in incognito)
 
