@@ -1,22 +1,53 @@
-[![Build Status](https://travis-ci.org/OneSignal/OneSignal-Website-SDK.svg?branch=master)](https://travis-ci.org/OneSignal/OneSignal-Website-SDK)
+# OneSignal Web Push SDK (mrf version)
 
-<p align="center">
-  <img src="https://onesignal.com/assets/common/logo_onesignal_color.png"/>
-  <br/>
-    <br/>
-  <img src="https://www.filepicker.io/api/file/FKy7xatlQeGqUuE9C3p8"/>
-  <span style="color: grey !important">Showing web push notifications from Chrome, Safari, and Firefox</span>
-</p>
+branch from the **marfeel** branch, and merge into it.
 
-# OneSignal Web Push SDK
+this branch will be rebased with OneSignal's OneSignal-Website-SDK master
 
-[OneSignal](https://onesignal.com) is a free push notification service for web and mobile apps.
+generate bundle
+```sh
+# generate the bundle
+npm run build:prod
 
-This SDK allows your site's visitors to receive push notifications from you. Send visitors custom notification content, target specific users, and send automatically based on triggers.
+# move it to XP
+cp ./build/bundles/OneSignalSDK.js $MARFEELXP_HOME/Tenants/vhosts/marfeel/resources/pushNotifications/OneSignalSDK.js
+```
 
+## debug
 
-## Getting Started
+You should be able to run commands in the developer tools Console now.
 
-View our [documentation](https://documentation.onesignal.com/docs/web-push-setup) to get started.
+Execute the following code in console:
 
-Please reference the OneSignal SDK on your webpage via our CDN URL (listed in our setup documentation) instead of copying the source into another file. This is because our SDK updates frequently for new features and bug fixes.
+```js
+OneSignal.log.setLevel('trace');
+```
+You should see undefined as the result. Reloading the page will provide you all the debug call of OneSignal.
+
+If you see:
+
+Uncaught ReferenceError: OneSignal is not defined(…) or ReferenceError: OneSignal is not defined, then OneSignal is not active on your webpage.
+
+Reference: [Web Push Troubleshooting](https://documentation.onesignal.com/docs/troubleshooting-web-push)
+
+## checks
+in chrome dev tools (remember that Push notifications do not work in incognito)
+
+```js
+OneSignal.VERSION
+// it should return 150200 (defined in package.json)
+```
+
+accept push notifications and send a push notification
+```js
+OneSignal.sendSelfNotification(
+ /* Title (defaults if unset) */ "Title",
+ /* Message (defaults if unset) */ "Text",
+  /* URL (defaults if unset) */ 'https://example.com/?_osp=do_not_open',
+ /* Icon */ 'https://onesignal.com/images/notification_logo.png'
+);
+```
+
+## mrf changelog
+* update package.json and return always the sdk version specified in the package.json config [PR](https://github.com/Marfeel/OneSignal-Website-SDK/pull/1)
+* get AppId from indexedDB instead of the qureyparams [PR](https://github.com/Marfeel/OneSignal-Website-SDK/pull/3)
