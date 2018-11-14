@@ -51,3 +51,4 @@ OneSignal.sendSelfNotification(
 ## mrf changelog
 * update package.json and return always the sdk version specified in the package.json config [PR](https://github.com/Marfeel/OneSignal-Website-SDK/pull/1)
 * get AppId from indexedDB instead of the qureyparams [PR](https://github.com/Marfeel/OneSignal-Website-SDK/pull/3)
+* integrate OneSignal Typical site integration with marfeel service workers [PR](https://github.com/Marfeel/OneSignal-Website-SDK/pull/9)
