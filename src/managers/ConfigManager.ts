@@ -109,8 +109,6 @@ export default class ConfigManager {
   }
 
   private getConfigIntegrationKind(serverConfig: ServerAppConfig): ConfigIntegrationKind {
-    if (serverConfig.config.integration)
-      return serverConfig.config.integration.kind;
     return ConfigIntegrationKind.Custom;
   }
 
